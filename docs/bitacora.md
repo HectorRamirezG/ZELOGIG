@@ -4,6 +4,18 @@
 
 ---
 
+## 2026-07-15 - Preparacion del repositorio GitHub
+
+- **Estado:** COMPLETO
+- **Que se hizo:** Se audito el proyecto y se preparo el primer envio al repositorio ZELOGIG.
+- **Decision + porque:** [Seguro] El repositorio publico solo recibira codigo, documentacion y configuraciones sin secretos.
+- **Contexto:** Lectura directa; graphify no disponible o no requerido.
+- **Validacion:** Primer commit local creado correctamente con 69 archivos.
+- **Costo:** No disponible desde este entorno.
+- **Siguiente paso:** Publicar la rama main en GitHub.
+- **Bloqueos / pendientes de humano:** La autenticacion debe realizarse con la cuenta HectorRamirezG.
+
+---
 ## 2026-07-15 - Gobierno, trazabilidad y diagramas incorporados
 
 - **Estado:** COMPLETO

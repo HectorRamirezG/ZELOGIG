@@ -1,4 +1,4 @@
-#requires -Version 5.1
+﻿#requires -Version 5.1
 [CmdletBinding()]
 param(
   [Parameter(Mandatory)][string]$Titulo,
@@ -15,7 +15,7 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
-$path = Join-Path $root 'docsitacora.md'
+$path = Join-Path $root 'docs\bitacora.md'
 if (-not (Test-Path -LiteralPath $path)) { throw "No existe $path" }
 
 $date = Get-Date -Format 'yyyy-MM-dd'
