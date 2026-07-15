@@ -1,0 +1,12 @@
+﻿{
+  "name": "zelogig",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Experiencia de aprendizaje de ingles mediante simulaciones y logica espacial.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {}
+}

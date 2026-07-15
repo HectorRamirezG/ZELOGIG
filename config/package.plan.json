@@ -1,0 +1,5 @@
+{
+  "runtime": ["next", "react", "react-dom", "@supabase/ssr", "@supabase/supabase-js"],
+  "development": ["typescript", "@types/node", "@types/react", "@types/react-dom", "tailwindcss", "eslint", "eslint-config-next", "vitest", "@playwright/test"],
+  "policy": "Instalar solo despues de disponer de Node.js LTS y revisar versiones compatibles."
+}
