@@ -4,6 +4,26 @@
 
 ---
 
+## 2026-07-15 - Elevación técnica, creativa y operativa
+
+- **Estado:** COMPLETO
+- **Que se hizo:** Se definieron arquitectura funcional del motor, aplicación práctica de SOLID, dirección artística, flujo de recursos con IA, entorno local, laboratorio, proceso de niveles, puertas de calidad, decisiones pendientes y protocolo de entrega a otras IA.
+- **Decision + porque:** [Seguro] ZelogiG se consolida como videojuego 2D de rompecabezas lingüísticos. El motor seguirá siendo local, determinista y desacoplado; CSS y SVG serán la base visual del MVP; las decisiones estructurales se presentarán al propietario antes de modificar código.
+- **Contexto:** Lectura directa de la documentación del proyecto y decisiones del propietario; graphify no disponible y no generado.
+- **Validacion:** Archivos generados con PowerShell 5.1. Validaciones de Node.js pendientes por bloqueo corporativo.
+- **Costo:** No disponible desde este entorno; no se inventan tokens ni USD.
+- **Siguiente paso:** Publicar la documentación, instalar Node.js en un equipo autorizado y ejecutar validación de tipos, pruebas y servidor local.
+- **Bloqueos / pendientes de humano:** Node.js no disponible en el equipo corporativo. Autenticación de GitHub debe usar la cuenta propietaria del repositorio.
+
+### Decisiones deliberadas, no deshacer
+
+- ZelogiG es un juego, no un simulador profesional.
+- Motor funcional y determinista.
+- CSS y SVG para el MVP; IA para conceptos bajo revisión humana.
+- Cinco niveles manuales antes de crear un editor.
+- Toda decisión estructural se presenta antes de modificar código.
+
+---
 ## 2026-07-15 - Preparacion del repositorio GitHub
 
 - **Estado:** COMPLETO

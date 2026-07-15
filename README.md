@@ -1,4 +1,4 @@
-﻿# ZelogiG
+# ZelogiG
 
 ZelogiG es una experiencia web para aprender ingles resolviendo rompecabezas narrativos y logicos. Las palabras son piezas del mundo: al construir una frase valida, el estado del nivel cambia.
 
@@ -52,3 +52,7 @@ Todavia no se ha generado codigo funcional, SQL, componentes, endpoints ni insta
 ## Inicio futuro
 
 Consulta `docs/INSTALL_PLAN.md`. Ningun comando de instalacion se ejecuta automaticamente.
+
+## Identidad oficial
+
+ZelogiG es un videojuego 2D de rompecabezas lingüísticos donde las palabras reescriben el mundo.
