@@ -4,6 +4,26 @@
 
 ---
 
+## 2026-07-16 - Sistemas de animación, audio, tacto y experiencia móvil
+
+- **Estado:** COMPLETO
+- **Que se hizo:** Se definieron el sistema de animación, audio, respuesta táctil, experiencia Mobile First, contrato de eventos neutrales, decisiones de stack y pendientes futuros. Se agregó el diagrama del sistema de experiencia y la decisión D-009.
+- **Decision + porque:** [Seguro] El MVP usará CSS, SVG y APIs nativas detrás de adaptadores. No se agregan bibliotecas hasta demostrar una necesidad que las justifique.
+- **Contexto:** Lectura directa de la documentación y decisiones aprobadas por el propietario; graphify no disponible y no generado.
+- **Validacion:** Documentación y diagrama generados con PowerShell 5.1. No se modificó código del motor ni se ejecutó NPM.
+- **Costo:** No disponible desde este entorno; no se inventan tokens ni USD.
+- **Siguiente paso:** Publicar cambios en GitHub y, al disponer de Node.js, revisar el contrato de eventos contra el motor antes de implementarlo.
+- **Bloqueos / pendientes de humano:** Node.js sigue bloqueado en el equipo corporativo. GitHub debe autenticarse con la cuenta propietaria.
+
+### Decisiones deliberadas, no deshacer
+
+- Mobile First real, no adaptación tardía.
+- CSS y SVG como base del MVP.
+- Eventos neutrales entre motor y efectos.
+- Audio y vibración opcionales.
+- Ninguna dependencia nueva queda autorizada automáticamente.
+
+---
 ## 2026-07-15 - Elevación técnica, creativa y operativa
 
 - **Estado:** COMPLETO
