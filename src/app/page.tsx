@@ -18,6 +18,8 @@ export default function HomePage() {
 
   const activeLevel = levels.find((level) => level.id === selectedLevelId) ?? defaultLevel;
   const completed = progress.completedLevelIds.includes(activeLevel.id);
+  const activeIndex = levels.findIndex((level) => level.id === activeLevel.id);
+  const nextLevel = activeIndex >= 0 && activeIndex < levels.length - 1 ? levels[activeIndex + 1] : null;
 
   useEffect(() => {
     setProgress(readProgress());
@@ -67,6 +69,12 @@ export default function HomePage() {
   const onRestart = () => {
     setGameState(restartGame(activeLevel));
     setAnnouncement("Nivel reiniciado.");
+  };
+
+  const onNextLevel = () => {
+    if (nextLevel) {
+      setSelectedLevelId(nextLevel.id);
+    }
   };
 
   const statusVariant = gameState.status === "won"
@@ -151,7 +159,15 @@ export default function HomePage() {
             </div>
 
             <div className={statusClassName} aria-live="polite" role="status">
-              {gameState.status === "won" ? "¡Nivel completado! Reinicia para volver a jugar o elige otro nivel." : announcement}
+              {gameState.status === "won" ? (
+                <div className="victory-panel">
+                  <p className="victory-message">¡Nivel completado! La puerta se abre y el tablero queda listo para la siguiente prueba.</p>
+                  <div className="victory-actions">
+                    {nextLevel ? <button type="button" onClick={onNextLevel}>Siguiente nivel</button> : null}
+                    <button type="button" onClick={onRestart}>Jugar de nuevo</button>
+                  </div>
+                </div>
+              ) : announcement}
             </div>
 
             <div className="game-controls" aria-label="Controles de movimiento">
