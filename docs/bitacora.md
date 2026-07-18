@@ -4,6 +4,44 @@
 
 ---
 
+## 2026-07-17 - Refinamiento UI/UX, accesibilidad y expansión de tests del dominio
+
+- **Estado:** COMPLETO
+- **Que se hizo:** Se extendió la experiencia del juego con controles táctiles direccionales explícitos, descripción accesible del tablero, utilería `.sr-only`, estilos mejorados para reglas activas siguiendo tema Soft-Tech, colores específicos por tipo de propiedad (YOU, PUSH, STOP, WIN, OPEN), soporte de mayúsculas en teclado WASD, y se expandió cobertura de tests a 14 casos verificando PUSH, STOP, OPEN, movimientos inválidos, undo sin historial y reinicio. Se corrigió la alineación de reglas en `level-001.ts`. Se crearon scripts de validación (`Validate-MVP.ps1`, `VALIDATION-CHECKLIST.ps1`) y guías de desarrollo (`QUICK-START.md`, `STATUS.md` actualizado).
+- **Decision + porque:** [Seguro] La interfaz debe cumplir MVP: accesibilidad básica, controles táctil/teclado, tema visual coherente y motor testeable. Los botones direccionales facilitan uso en móvil; los estilos por propiedad ayudan a entender reglas sin depender de color. Los scripts permiten validación rápida cuando Node.js esté disponible. La documentación facilita onboarding de futuras contribuciones.
+- **Contexto:** Planeación basada en `docs/10_design_system.md`, `docs/19_frontend_design.md`, `docs/21_mvp_definition.md`, `docs/17_engine_rules.md`. Los tests validan invariantes del dominio antes de ejecutar en navegador. Scripts permiten un flujo CI rápido sin necesidad de GitHub Actions aún.
+- **Validacion:** Verificación de errores TypeScript en todos los archivos nuevos retorna cero errores. Tests no ejecutados aún por falta de Node.js corporativo. Documentación verificada manualmente contra decisiones previas.
+- **Costo:** No disponible desde este entorno.
+- **Siguiente paso:** Cuando Node.js esté disponible, ejecutar `.\scripts\Validate-MVP.ps1` o `npm test -- --run` seguido de `npm run dev`. Revisar interfaz en navegador usando checklist en `scripts/VALIDATION-CHECKLIST.ps1`.
+- **Bloqueos / pendientes de humano:** Node.js 20+ no disponible. Sin ejecución real, no se puede garantizar reglas PUSH/STOP/OPEN en tiempo de ejecución ni validar flujo visual completo.
+
+### Decisiones deliberadas, no deshacer
+
+- Controles direccionales como complemento a teclado/tactil, no reemplazo.
+- Colores por propiedad respetan accesibilidad (no solo color como medio).
+- Nivel 001 redefinido para que reglas se alineen correctamente.
+- Tests cubren invariantes clave: no alteración de historial en movimientos inválidos, empuje en cadena, bloqueo de STOP.
+- Documentación vive en `/docs/` y es accesible offline, sin dependencias de wikis externas.
+
+---
+
+## 2026-07-17 - Implementación del juego jugable y persistencia local
+
+- **Estado:** COMPLETO
+- **Que se hizo:** Se completó la experiencia jugable del MVP en `src/app/page.tsx` con selección de nivel, reinicio, deshacer, reglas activas, progreso local y anuncios accesibles. Se agregó la evaluación de victoria y reinicio en `src/features/game/domain/game-engine.ts`, y se corrigió la persistencia local en `src/features/progress/local-progress.ts`.
+- **Decision + porque:** [Seguro] El MVP debe funcionar localmente con control de nivel, entradas táctiles/teclado y progreso mínimo sin depender de servicios externos.
+- **Contexto:** El proyecto ya tenía la base del motor y los datos de niveles; se implementó la capa de aplicación y la interfaz mínima necesaria para completar el flujo.
+- **Validacion:** Se verificaron errores de TypeScript en los archivos modificados y se añadieron pruebas unitarias básicas para el motor.
+- **Costo:** No disponible desde este entorno.
+- **Siguiente paso:** Ejecutar `npm test` y `npm run build` en un entorno con Node.js disponible para validar la experiencia completa.
+- **Bloqueos / pendientes de humano:** Node.js debe estar habilitado en el equipo autorizado para ejecutar la validación y el servidor local.
+
+### Decisiones deliberadas, no deshacer
+
+- El juego local debe poder iniciarse en cualquier nivel con reinicio y deshacer.
+- Las reglas activas se muestran como texto, no solo como elementos visuales.
+- La persistencia local es el primer método de progreso antes de Supabase.
+
 ## 2026-07-16 - Sistemas de animación, audio, tacto y experiencia móvil
 
 - **Estado:** COMPLETO

@@ -4,8 +4,17 @@ export interface LocalProgress { readonly completedLevelIds: readonly string[]; 
 
 export function readProgress(): LocalProgress {
   if (typeof window === "undefined") return { completedLevelIds: [] };
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "{"completedLevelIds":[]}") as LocalProgress; }
-  catch { return { completedLevelIds: [] }; }
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return { completedLevelIds: [] };
+
+  try {
+    const parsed = JSON.parse(raw) as LocalProgress;
+    if (!parsed || !Array.isArray(parsed.completedLevelIds)) return { completedLevelIds: [] };
+    return { completedLevelIds: parsed.completedLevelIds };
+  }
+  catch {
+    return { completedLevelIds: [] };
+  }
 }
 
 export function completeLevel(levelId: string): LocalProgress {

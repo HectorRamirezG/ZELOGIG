@@ -11,6 +11,6 @@ export const level001: LevelDefinition = {
     { id: "w-you", kind: "word", wordKind: "property", value: "YOU", position: { row: 1, column: 3 } },
     { id: "w-door", kind: "word", wordKind: "noun", value: "DOOR", position: { row: 3, column: 3 } },
     { id: "w-is-2", kind: "word", wordKind: "operator", value: "IS", position: { row: 3, column: 4 } },
-    { id: "w-open", kind: "word", wordKind: "property", value: "OPEN", position: { row: 2, column: 4 } }
+    { id: "w-open", kind: "word", wordKind: "property", value: "OPEN", position: { row: 3, column: 5 } }
   ]
 };
