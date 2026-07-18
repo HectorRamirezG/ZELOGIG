@@ -13,11 +13,15 @@ const defaultLevel = levels[0];
 export default function HomePage() {
   const [selectedLevelId, setSelectedLevelId] = useState(defaultLevel.id);
   const [gameState, setGameState] = useState(() => createGame(defaultLevel));
-  const [progress, setProgress] = useState(() => readProgress());
+  const [progress, setProgress] = useState({ completedLevelIds: [] as string[] });
   const [announcement, setAnnouncement] = useState("Usa flechas, WASD o desliza para mover.");
 
   const activeLevel = levels.find((level) => level.id === selectedLevelId) ?? defaultLevel;
   const completed = progress.completedLevelIds.includes(activeLevel.id);
+
+  useEffect(() => {
+    setProgress(readProgress());
+  }, []);
 
   useEffect(() => {
     setGameState(createGame(activeLevel));
@@ -190,3 +194,5 @@ export default function HomePage() {
     </main>
   );
 }
+
+

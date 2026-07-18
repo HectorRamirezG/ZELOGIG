@@ -42,6 +42,25 @@
 - Las reglas activas se muestran como texto, no solo como elementos visuales.
 - La persistencia local es el primer método de progreso antes de Supabase.
 
+## 2026-07-17 - Corrección del flujo de victoria y validación del motor
+
+- **Estado:** COMPLETO
+- **Que se hizo:** Se corrigió el motor de juego para que el nivel 1 sea realmente completable. El movimiento ya no bloquea al jugador por las palabras de regla, se permitió avanzar sobre objetos con regla WIN y se ajustó la evaluación de victoria para pasar de "playing" a "won" cuando el jugador alcanza el objetivo. También se añadieron pruebas de regresión para bordes, movimientos inválidos y el flujo de completado del nivel 1.
+- **Decision + porque:** [Seguro] El MVP solo es creíble si el jugador puede terminar un nivel sin que el motor lo trabe artificialmente. La lógica de movimiento debe reflejar las reglas del juego y no depender de suposiciones visuales.
+- **Contexto:** La validación se hizo contra el motor puro y las pruebas unitarias del dominio, sin depender del navegador. Se usó el nivel 1 como caso de integración para confirmar que la ruta de victoria es alcanzable.
+- **Validacion:** Se ejecutó `npm test -- --run` y el resultado fue 2 archivos de prueba aprobados, 13/13 pruebas correctas.
+- **Costo:** No disponible desde este entorno.
+- **Siguiente paso:** Probar el flujo completo en la interfaz y ajustar el mensaje/feedback visual de victoria para que sea más claro en la experiencia del usuario.
+- **Bloqueos / pendientes de humano:** Ninguno en esta iteración; el siguiente paso es validar la experiencia visual en el navegador.
+
+### Decisiones deliberadas, no deshacer
+
+- Las reglas del juego se evalúan en el motor, no en la interfaz.
+- El estado de victoria debe dispararse únicamente cuando el jugador alcanza una condición real de win.
+- Los movimientos inválidos no deben mutar historial ni contar como jugadas.
+
+---
+
 ## 2026-07-16 - Sistemas de animación, audio, tacto y experiencia móvil
 
 - **Estado:** COMPLETO

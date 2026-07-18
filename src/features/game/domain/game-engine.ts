@@ -1,4 +1,4 @@
-import type { Direction, GameState } from "./game.types";
+import type { Block, Direction, GameState } from "./game.types";
 import type { LevelDefinition } from "../../levels/domain/level.types";
 import { moveBlocks } from "./move";
 import { parseRules } from "./rule-parser";
@@ -27,6 +27,14 @@ function hasWon(state: GameState): boolean {
   return false;
 }
 
+function hasMeaningfulChange(previousBlocks: readonly Block[], nextBlocks: readonly Block[]): boolean {
+  if (previousBlocks.length !== nextBlocks.length) return true;
+  return previousBlocks.some((block, index) => {
+    const nextBlock = nextBlocks[index];
+    return block.position.row !== nextBlock.position.row || block.position.column !== nextBlock.position.column;
+  });
+}
+
 function evaluateState(state: GameState): GameState {
   const status = hasWon(state) ? "won" : "playing";
   return status === state.status ? state : { ...state, status };
@@ -41,7 +49,7 @@ export function moveGame(state: GameState, level: LevelDefinition, direction: Di
   if (state.status === "won") return state;
 
   const blocks = moveBlocks({ blocks: state.blocks, rules: state.activeRules, direction, width: level.width, height: level.height });
-  if (blocks === state.blocks) return state;
+  if (!hasMeaningfulChange(state.blocks, blocks)) return state;
 
   const activeRules = parseRules(blocks);
   return evaluateState({ blocks, activeRules, history: [...state.history, state.blocks], status: state.status, moves: state.moves + 1 });

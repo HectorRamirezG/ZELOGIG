@@ -147,10 +147,26 @@ describe("Game Engine", () => {
   });
 
   it("does not move if hitting boundary", () => {
-    const state = createGame(level001);
+    const boundaryLevel = {
+      schemaVersion: 1,
+      id: "boundary-level",
+      title: "Boundary Test",
+      difficulty: 1,
+      objective: "No salgas del tablero.",
+      width: 3,
+      height: 3,
+      blocks: [
+        { id: "player", kind: "object", noun: "PLAYER", position: { row: 1, column: 0 } },
+        { id: "w-player", kind: "word", wordKind: "noun", value: "PLAYER", position: { row: 0, column: 0 } },
+        { id: "w-is", kind: "word", wordKind: "operator", value: "IS", position: { row: 0, column: 1 } },
+        { id: "w-you", kind: "word", wordKind: "property", value: "YOU", position: { row: 0, column: 2 } },
+      ],
+    };
+
+    const state = createGame(boundaryLevel);
     const playerStart = state.blocks.find((b) => b.kind === "object" && b.noun === "PLAYER");
 
-    const leftNext = moveGame(state, level001, "left");
+    const leftNext = moveGame(state, boundaryLevel, "left");
     const playerAfterLeft = leftNext.blocks.find((b) => b.kind === "object" && b.noun === "PLAYER");
 
     expect(playerAfterLeft?.position).toEqual(playerStart?.position);
@@ -168,9 +184,34 @@ describe("Game Engine", () => {
   });
 
   it("does not save move to history if nothing changed", () => {
-    const state = createGame(level001);
-    const invalidMove = moveGame(state, level001, "left");
+    const boundaryLevel = {
+      schemaVersion: 1,
+      id: "boundary-history-level",
+      title: "Boundary History Test",
+      difficulty: 1,
+      objective: "No salgas del tablero.",
+      width: 3,
+      height: 3,
+      blocks: [
+        { id: "player", kind: "object", noun: "PLAYER", position: { row: 1, column: 0 } },
+        { id: "w-player", kind: "word", wordKind: "noun", value: "PLAYER", position: { row: 0, column: 0 } },
+        { id: "w-is", kind: "word", wordKind: "operator", value: "IS", position: { row: 0, column: 1 } },
+        { id: "w-you", kind: "word", wordKind: "property", value: "YOU", position: { row: 0, column: 2 } },
+      ],
+    };
+
+    const state = createGame(boundaryLevel);
+    const invalidMove = moveGame(state, boundaryLevel, "left");
 
     expect(invalidMove.history.length).toBe(0);
+  });
+
+  it("completes level 1 by reaching a reachable WIN object", () => {
+    let state = createGame(level001);
+    for (let index = 0; index < 5; index += 1) {
+      state = moveGame(state, level001, "right");
+    }
+
+    expect(state.status).toBe("won");
   });
 });

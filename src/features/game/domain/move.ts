@@ -35,13 +35,17 @@ export function moveBlocks(input: MoveInput): readonly Block[] {
 
     const occupants = byCell.get(key(target)) ?? [];
     for (const occupant of occupants) {
-      const pushable = occupant.kind === "word" || (occupant.kind === "object" && hasRule(input.rules, occupant.noun, "PUSH"));
+      if (occupant.kind === "word") continue;
+
+      const pushable = occupant.kind === "object" && hasRule(input.rules, occupant.noun, "PUSH");
       const stopping = occupant.kind === "object" && hasRule(input.rules, occupant.noun, "STOP");
       const openPassable = occupant.kind === "object" && hasRule(input.rules, occupant.noun, "OPEN") && hasRule(input.rules, block.noun, "YOU");
+      const winPassable = occupant.kind === "object" && hasRule(input.rules, occupant.noun, "WIN") && hasRule(input.rules, block.noun, "YOU");
 
-      if (openPassable) continue;
+      if (openPassable || winPassable) continue;
       if (stopping && !pushable) return false;
       if (pushable && !canMove(occupant, new Set(visiting))) return false;
+      if (!pushable && !openPassable && !winPassable) return false;
     }
 
     updates.set(block.id, target);
