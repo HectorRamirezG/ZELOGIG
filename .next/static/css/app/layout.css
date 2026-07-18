@@ -504,6 +504,34 @@ select {
   border-color: rgba(34, 197, 94, 0.28);
   animation: pulse-glow 2.5s ease-in-out infinite;
 }
+.victory-panel {
+  display: grid;
+  gap: 12px;
+}
+.victory-message {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.victory-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.victory-actions button {
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: rgba(15, 23, 42, 0.9);
+  color: #f8fafc;
+  font-weight: 700;
+  cursor: pointer;
+}
+.victory-actions button:hover,
+.victory-actions button:focus-visible {
+  border-color: rgba(34, 197, 94, 0.45);
+  background: rgba(22, 101, 52, 0.9);
+}
 @keyframes pulse-glow {
   0%, 100% {
     box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.18);
